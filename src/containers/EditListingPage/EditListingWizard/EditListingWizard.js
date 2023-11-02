@@ -45,7 +45,6 @@ import EditListingWizardTab, {
   PRICING,
   PRICING_AND_STOCK,
   DELIVERY,
-  LOCATION,
   AVAILABILITY,
   PHOTOS,
 } from './EditListingWizardTab';
@@ -59,9 +58,9 @@ import css from './EditListingWizard.module.css';
 //         Details tab asks for "title" and is therefore the first tab in the wizard flow.
 const TABS_DETAILS_ONLY = [DETAILS];
 const TABS_PRODUCT = [DETAILS, PRICING_AND_STOCK, DELIVERY, PHOTOS];
-const TABS_BOOKING = [DETAILS, LOCATION, PRICING, AVAILABILITY, PHOTOS];
-const TABS_INQUIRY = [DETAILS, LOCATION, PRICING, PHOTOS];
-const TABS_INQUIRY_WITHOUT_PRICE = [DETAILS, LOCATION, PHOTOS];
+const TABS_BOOKING = [DETAILS, PRICING, AVAILABILITY, PHOTOS];
+const TABS_INQUIRY = [DETAILS, PRICING, PHOTOS];
+const TABS_INQUIRY_WITHOUT_PRICE = [DETAILS, PHOTOS];
 const TABS_ALL = [...TABS_PRODUCT, ...TABS_BOOKING, ...TABS_INQUIRY];
 
 // Tabs are horizontal in small screens
@@ -96,12 +95,6 @@ const tabLabelAndSubmit = (intl, tab, isNewListingFlow, isPriceDisabled, process
   } else if (tab === DELIVERY) {
     labelKey = 'EditListingWizard.tabLabelDelivery';
     submitButtonKey = `EditListingWizard.${processNameString}${newOrEdit}.saveDelivery`;
-  } else if (tab === LOCATION) {
-    labelKey = 'EditListingWizard.tabLabelLocation';
-    submitButtonKey =
-      isPriceDisabled && isNewListingFlow
-        ? `EditListingWizard.${processNameString}${newOrEdit}.saveLocationNoPricingTab`
-        : `EditListingWizard.${processNameString}${newOrEdit}.saveLocation`;
   } else if (tab === AVAILABILITY) {
     labelKey = 'EditListingWizard.tabLabelAvailability';
     submitButtonKey = `EditListingWizard.${processNameString}${newOrEdit}.saveAvailability`;
@@ -178,7 +171,6 @@ const tabCompleted = (tab, listing, config) => {
   const {
     availabilityPlan,
     description,
-    geolocation,
     price,
     title,
     publicData,
