@@ -197,8 +197,6 @@ const tabCompleted = (tab, listing, config) => {
       return !!price;
     case DELIVERY:
       return !!deliveryOptionPicked;
-    case LOCATION:
-      return !!(geolocation && publicData?.location?.address);
     case AVAILABILITY:
       return !!availabilityPlan;
     case PHOTOS:
@@ -667,7 +665,6 @@ EditListingWizard.propTypes = {
     attributes: shape({
       publicData: object,
       description: string,
-      geolocation: object,
       price: object,
       title: string,
     }),
